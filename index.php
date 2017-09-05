@@ -1,27 +1,35 @@
 <?php
-$vardas = "";
+//$vardas = "";
 
-#COOKIES
-//setcookie("username", "Aivaras", time() + (60 * 60 * 24 *7), "/"); // 86400 = 1 day
-/*
-if(isset($_COOKIE["username"])) {
-	$vardas = $_COOKIE["username"];
-} else {
-	$vardas = "nezinomas";
-}*/
+session_start();	
 
-#SESIONS 
+if (isset($_POST['username']) && isset($_POST['password'])) {
+	#yra ivesti prisijungimo duomenis
+	if	($_POST['username'] == "Aivaras" && $_POST['password'] == "bam"){
+		$correct = "Correct!";
+		#vartotojo vardas ir slaptazodis tinka
 
-//session_start();
+		$_SESSION['user']['username'] = $_POST['username'];
+		$_SESSION['user']['level'] = 'admin';
 
-//$_SESSION['username'] = "Kambala";
-/*
-if(isset($_SESSION['username'])) {
-	$vardas = $_SESSION['username'];
-} else {
-	$vardas = 'nezinomas';
+	} else {
+		# vartotojo vardas arba slaptazodis netinkamas
+		$error = "Wrong username or password";
+	}
+}	else if (isset($_POST['submit'])) {
+	#prisijungimo duomenis nebuvo ivesti
+	$error = "no login date";
 }
-*/
 
-//include "coce.php";
-include "view/login.php";
+
+
+if (isset($_SESSION['user'])) {
+	$vardas = $_SESSION['user']['username'];
+	include "view/main.php";
+}	else {
+	include "view/login.php";
+}
+
+if (isset($_GET['logout'])) {
+	session_destroy();
+}
