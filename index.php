@@ -2,8 +2,11 @@
 	function cookie() {
 			$namess = '';
 			$lastTime = "";
-			setcookie("nam",$_POST['username'], time() + (60 * 2), "/"); // 86400 = 1 day
+			if (isset($_POST['check'])) {
+				setcookie("nam",$_POST['username'], time() + (60 * 2), "/"); // 86400 = 1 day
 			setcookie("lastTime",date('Y-m-d h:i:sa'), time() + (60 * 2), "/"); // 86400 = 1 day
+			}
+			
 	}
 
 	if(isset($_COOKIE["nam"])) {
