@@ -20,7 +20,7 @@
 				<form method="POST" >
 				  <div class="form-group">
 				    <label for="username">Username</label>
-				    <input name="username" type="text" class="form-control" id="username" >
+				    <input name="username" type="text" class="form-control" id="username" value="<?php if (isset($_COOKIE["nam"])) echo $_COOKIE["nam"]; ?>">
 				  </div>
 				  <div class="form-group">
 				    <label for="password">Password</label>
