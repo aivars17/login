@@ -1,13 +1,5 @@
 <?php
-function cookie() {
-		$namess = '';
-		$lastTime = "";
-		if (isset($_POST['check'])) {
-			setcookie("nam",$_POST['username'], time() + (60 * 2), "/"); // 86400 = 1 day
-			setcookie("lastTime",date('Y-m-d h:i:sa'), time() + (60 * 2), "/"); // 86400 = 1 day
-		}
-		
-}
+
 
 	if(isset($_COOKIE["nam"])) {
 	$namess = $_COOKIE["nam"];
@@ -24,7 +16,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 		$_SESSION['user']['username'] = $_POST['username'];
 		$_SESSION['user']['level'] = 'admin';
-		cookie();
+		if (isset($_POST['check'])) {
+			setcookie("nam",$_POST['username'], time() + (60 * 2), "/"); // 86400 = 1 day
+			setcookie("lastTime",date('Y-m-d h:i:sa'), time() + (60 * 2), "/"); // 86400 = 1 day
+		}
 	} else { 
 		# vartotojo vardas arba slaptazodis netinkamas
 		
